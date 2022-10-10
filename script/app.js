@@ -6,13 +6,6 @@ const getCards = function(card_id, amount){
     {
         handleData(`https://deckofcardsapi.com/api/deck/${card_id}/draw/?count=${amount}`, showCard);
     }
-    else if(value == 21){
-        document.querySelector('.js-message').innerHTML = "Proficiat, je hebt blackjack (21)!";
-    }
-    else{
-        document.querySelector('.js-message').innerHTML = "Verbrand!";
-        document.querySelector('.js-start-new-game').classList.remove('u-invisible');
-    }
 }
 
 const showCard = function(data){
@@ -23,6 +16,16 @@ const showCard = function(data){
     array.forEach(element => {
         addCard(element);
     });
+    if(value == 21){
+        message.innerHTML = "Proficiat, je hebt blackjack (21)!";
+        btnDrawCard.disabled = true;
+        btnNewGame.classList.remove('u-invisible');
+    }
+    else if (value > 21){
+        message.innerHTML = "Verbrand!";
+        btnDrawCard.disabled = true;
+        btnNewGame.classList.remove('u-invisible');
+    }
 }
 
 const showDeck = function(data){
@@ -37,9 +40,9 @@ const createDeck = function(){
 }
 
 const addCard = function(card){
-    document.querySelector('.js-placeholder-cards').innerHTML += `<img class="js-play-card c-play-card" src="${card.image}" alt="card">`;
+    placeholderCards.innerHTML += `<img class="js-play-card c-play-card" src="${card.image}" alt="card">`;
     value += getCardValue(card.value);
-    document.querySelector('.js-cards-value').innerHTML = `value: ${value}`;
+    cardsValue.innerHTML = `value: ${value}`;
 }
 
 const getCardValue = function(valueTag)
@@ -79,28 +82,41 @@ const getCardValue = function(valueTag)
 
 const listenToClickKnopen = function()
 {
-  document.querySelector('.js-darw-card').addEventListener('click',function()
+  btnDrawCard.addEventListener('click',function()
   {
     console.info('Geklikt');
     getCards(deck_id, 1);
   })
 
-  document.querySelector('.js-start-new-game').addEventListener('click',function()
+  btnNewGame.addEventListener('click',function()
   {
     console.info('Geklikt');
-    document.querySelector('.js-start-new-game').classList.add('u-invisible');
+    btnNewGame.classList.add('u-invisible');
     startNewGame();
   })
 }
 
 const startNewGame = function(){
+    //Reset the total value
     value = 0;
-    document.querySelector('.js-placeholder-cards').innerHTML = '<legend>Deck of cards</legend>';
+    //Remove existing cards
+    placeholderCards.innerHTML = '<legend>Deck of cards</legend>';
+    //enable the draw card button
+    btnDrawCard.disabled = false;
+    //Clear the message
+    message.innerHTML = '';
+    //Start with 2 new cards
     getCards(deck_id, 2);
 }
 
 //#region ***  Init / DOMContentLoaded                  ***********
 const init = function () {
+    btnDrawCard = document.querySelector('.js-darw-card');
+    btnNewGame = document.querySelector('.js-start-new-game');
+    placeholderCards = document.querySelector('.js-placeholder-cards');
+    cardsValue = document.querySelector('.js-cards-value');
+    message = document.querySelector('.js-message');
+
     createDeck();
     listenToClickKnopen();
 };

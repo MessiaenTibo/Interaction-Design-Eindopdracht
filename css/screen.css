@@ -1489,7 +1489,7 @@
   
   .c-play-card{
     height: 150px;
-    padding-right: 8px;
+    padding: 2px 8px 8px 0;
   }
 
   .js-placeholder-cards{
