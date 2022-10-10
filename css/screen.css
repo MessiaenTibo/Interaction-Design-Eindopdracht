@@ -1487,3 +1487,20 @@
     }
   }
   
+  .c-play-card{
+    height: 150px;
+    padding-right: 8px;
+  }
+
+  .js-placeholder-cards{
+    display: inline;
+    border: solid 1px black;
+    padding: 8px;
+    padding-right: 0px;
+    height: auto;
+    width: auto;
+  }
+
+  .u-invisible{
+    display: none;
+  }
