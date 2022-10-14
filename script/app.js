@@ -1,6 +1,25 @@
 let deck_id = "";
 let value = 0;
 
+const html = document.querySelector('html');
+
+const toggleThemeMode = async function(){
+    let string = "";
+    console.log(!html.classList.contains('dark'));
+    if(!html.classList.contains('dark'))  string = "add";
+    else string = "remove";
+    console.log(string);
+    if(string == "add")
+    {
+        html.classList.add('dark');
+    }
+    if(string == "remove")
+    {
+        html.classList.remove('dark');
+    }
+}
+
+
 const getCards = function(card_id, amount){
     if(value < 21)
     {
@@ -25,6 +44,9 @@ const showCard = function(data){
         message.innerHTML = "Verbrand!";
         btnDrawCard.disabled = true;
         btnNewGame.classList.remove('u-invisible');
+    }
+    else{
+        message.innerHTML = "Nog een kaartje?";
     }
 }
 
@@ -94,6 +116,12 @@ const listenToClickKnopen = function()
     btnNewGame.classList.add('u-invisible');
     startNewGame();
   })
+
+  btnToggleMode.addEventListener('click',function()
+  {
+    console.info('Geklikt');
+    toggleThemeMode();
+  })
 }
 
 const startNewGame = function(){
@@ -116,6 +144,8 @@ const init = function () {
     placeholderCards = document.querySelector('.js-placeholder-cards');
     cardsValue = document.querySelector('.js-cards-value');
     message = document.querySelector('.js-message');
+
+    btnToggleMode = document.querySelector('.js-toggle-mode');
 
     createDeck();
     listenToClickKnopen();

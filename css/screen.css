@@ -103,6 +103,61 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
+    transition: 0.4s;
+  }
+
+  html.dark
+  {
+    background: radial-gradient(rgb(10, 40, 10), rgb(10, 30, 10));
+    transition: 0.4s;
+    --global-html-color: var(--global-color-neutral-xxxx-light);
+  }
+
+  .switch {
+    position: relative;
+    width: 3.5rem;
+    height: 2rem;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 30px;
+  }
+
+  .slider:before{
+    position: absolute;
+    content: "";
+    height: 1.4rem;
+    width: 1.4rem;
+    left: 0.3rem;
+    border-radius: 20px;
+    top: 50%;
+    transition: 0.4s;
+    transform: translateY(-50%);
+    background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+  }
+
+  input:checked + .slider {
+    background-color: #37393f;
+  }
+
+  input:checked + .slider:before {
+    left: calc(100% - 1.7rem);
+    background: #37393f;
+    box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
   }
   
   *,
