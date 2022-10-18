@@ -38,14 +38,24 @@
         </div>
     </header>
     <main>
-        <fieldset class="js-placeholder-cards">
-            <legend>Deck of cards</legend>
-        </fieldset>
-    
-        <p class="js-cards-value">value: 0</p>
-        <button class="js-darw-card">Draw card</button>
-        <p class="js-message"></p>
-        <button class="js-start-new-game u-invisible">Start new game</button>
+        <div class="o-container">
+            <div>
+                <fieldset class="js-placeholder-cards js-dealer-cards">
+                    <legend>Dealer's cards</legend>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset class="js-placeholder-cards js-player-cards">
+                    <legend>Your cards</legend>
+                </fieldset>
+            </div>
+            <p class="js-cards-value-dealer">Dealer: <b>0</b></p>
+            <p class="js-cards-value-player">You: <b>0</b></p>
+            <button class="js-darw-card">Draw card</button>
+            <button class="js-hold">Hold</button>
+            <button class="js-start-new-game u-invisible">Start new game</button>
+            <p class="js-message"></p>
+        </div>
     </main>
 </body>
 </html>

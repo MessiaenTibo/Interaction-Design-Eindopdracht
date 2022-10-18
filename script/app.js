@@ -1,6 +1,7 @@
 let deck_id = "";
-let value = 0;
-
+let valuePlayer = 0;
+let valueDealer = 0;
+let person = "Player";
 const html = document.querySelector('html');
 
 const toggleThemeMode = async function(){
@@ -20,29 +21,53 @@ const toggleThemeMode = async function(){
 }
 
 
-const getCards = function(card_id, amount){
-    if(value < 21)
+const getCardsPlayer = function(card_id, amount){
+    if(valuePlayer < 21)
     {
-        handleData(`https://deckofcardsapi.com/api/deck/${card_id}/draw/?count=${amount}`, showCard);
+        handleData(`https://deckofcardsapi.com/api/deck/${card_id}/draw/?count=${amount}`, showCardPlayer);
     }
 }
 
-const showCard = function(data){
+const getCardsDealer = function(card_id, amount){
+    if(valueDealer < 21)
+    {
+        handleData(`https://deckofcardsapi.com/api/deck/${card_id}/draw/?count=${amount}`, showCardDealer);
+    }
+}
+
+const getCardsDealerHold = function(card_id, amount){
+    if(valueDealer < 21)
+    {
+        handleData(`https://deckofcardsapi.com/api/deck/${card_id}/draw/?count=${amount}`, showCardDealerHold);
+    }
+}
+
+const createDeck = function(){
+    handleData('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6', showDecks);
+}
+
+const showCardPlayer = function(data){
+    if(data.success == false) {
+        alert("No more cards left, creating new game!");
+        createDeck();
+    }
     console.log(data);
     console.log(data.cards[0].image);
     //document.querySelector('.js-card').src = data.cards[0].image;
     array = data.cards
     array.forEach(element => {
-        addCard(element);
+        addCardPlayer(element);
     });
-    if(value == 21){
+    if(valuePlayer == 21){
         message.innerHTML = "Proficiat, je hebt blackjack (21)!";
         btnDrawCard.disabled = true;
+        btnHold.disabled = true;
         btnNewGame.classList.remove('u-invisible');
     }
-    else if (value > 21){
+    else if (valuePlayer > 21){
         message.innerHTML = "Verbrand!";
         btnDrawCard.disabled = true;
+        btnHold.disabled = true;
         btnNewGame.classList.remove('u-invisible');
     }
     else{
@@ -50,21 +75,88 @@ const showCard = function(data){
     }
 }
 
-const showDeck = function(data){
+const showCardDealer = function(data){
+    console.log(data);
+    console.log(data.cards[0].image);
+    //document.querySelector('.js-card').src = data.cards[0].image;
+    array = data.cards
+    array.forEach(element => {
+        addCardDealer(element);
+    });
+    if(valueDealer == 21){
+        message.innerHTML = "Je hebt verloren, de dealer heeft blackjack (21)!";
+        btnDrawCard.disabled = true;
+        btnHold.disabled = true;
+        btnNewGame.classList.remove('u-invisible');
+    }
+    else if (valueDealer > 21){
+        message.innerHTML = "Je hebt verloren, de dealer is verbrand!";
+        btnDrawCard.disabled = true;
+        btnNewGame.classList.remove('u-invisible');
+    }
+}
+
+const showCardDealerHold = function(data){
+    console.log(data);
+    console.log(data.cards[0].image);
+    array = data.cards
+    array.forEach(element => {
+        addCardDealer(element);
+    });
+    if(valueDealer == 21){
+        message.innerHTML = "Je hebt verloren, de dealer heeft blackjack (21)!";
+        btnDrawCard.disabled = true;
+        btnNewGame.classList.remove('u-invisible');
+    }
+    else if (valueDealer > 21){
+        message.innerHTML = "Je hebt gewonnen, de dealer is verbrand!";
+        btnDrawCard.disabled = true;
+        btnNewGame.classList.remove('u-invisible');
+    }
+    else if(valueDealer < 21){
+        if(valueDealer < valuePlayer){
+            getCardsDealerHold(deck_id, 1);
+        }
+        else{
+            message.innerHTML = "Je hebt verloren, de dealer heeft meer punten!";
+            btnDrawCard.disabled = true;
+            btnHold.disabled = true;
+            btnNewGame.classList.remove('u-invisible');
+        }
+    }
+}
+
+const showDecks = function(data){
+    showDeckPlayer(data);
+    showDeckDealer(data);
+}
+
+const showDeckDealer = function(data){
     console.log(data);
     amount = 2;
     deck_id = data['deck_id'];
-    getCards(deck_id, amount);
+    getCardsDealer(deck_id, amount);
 }
 
-const createDeck = function(){
-    handleData('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1', showDeck);
+const showDeckPlayer = function(data){
+    console.log(data);
+    amount = 2;
+    deck_id = data['deck_id'];
+    getCardsPlayer(deck_id, amount);
 }
 
-const addCard = function(card){
-    placeholderCards.innerHTML += `<img class="js-play-card c-play-card" src="${card.image}" alt="card">`;
-    value += getCardValue(card.value);
-    cardsValue.innerHTML = `value: ${value}`;
+const addCardPlayer = function(card){
+    cardFlipSound.play();
+    placeholderCardsPlayer.innerHTML += `<img class="js-play-card c-play-card" src="${card.image}" alt="card">`;
+    valuePlayer += getCardValue(card.value);
+    cardsValuePlayer.innerHTML = `Player: <b>${valuePlayer}</b>`;
+}
+
+const addCardDealer = function(card){
+    cardFlipSound.play();
+    placeholderCardsDealer.innerHTML += `<img class="js-play-card c-play-card" src="${card.image}" alt="card">`;
+    valueDealer += getCardValue(card.value);
+    cardsValueDealer.innerHTML = `Dealer: <b>${valueDealer}</b>`;
 }
 
 const getCardValue = function(valueTag)
@@ -107,7 +199,7 @@ const listenToClickKnopen = function()
   btnDrawCard.addEventListener('click',function()
   {
     console.info('Geklikt');
-    getCards(deck_id, 1);
+    getCardsPlayer(deck_id, 1);
   })
 
   btnNewGame.addEventListener('click',function()
@@ -122,27 +214,66 @@ const listenToClickKnopen = function()
     console.info('Geklikt');
     toggleThemeMode();
   })
+  btnHold.addEventListener('click',function()
+  {
+        console.info('Geklikt');
+        Hold()
+  })
 }
 
 const startNewGame = function(){
     //Reset the total value
-    value = 0;
-    //Remove existing cards
-    placeholderCards.innerHTML = '<legend>Deck of cards</legend>';
+    valuePlayer = 0;
+    valueDealer = 0;
+    //Remove existing cards from player
+    placeholderCardsPlayer.innerHTML = '<legend>Deck of cards</legend>';
+    //Remove existing cards from dealer
+    placeholderCardsDealer.innerHTML = '<legend>Deck of cards</legend>';
     //enable the draw card button
     btnDrawCard.disabled = false;
+    //enable the hold button
+    btnHold.disabled = false;
     //Clear the message
     message.innerHTML = '';
-    //Start with 2 new cards
-    getCards(deck_id, 2);
+    //Start with 2 new cards for the dealer
+    getCardsDealer(deck_id, 2);
+    //Start with 2 new cards for the player
+    getCardsPlayer(deck_id, 2);
+}
+
+const Hold = function(){
+    //Disable the draw card button
+    btnDrawCard.disabled = true;
+    //Disable the hold button
+    btnHold.disabled = true;
+    //Enable the new game button
+    btnNewGame.classList.remove('u-invisible');
+    //Check who has the highest value
+    if(valuePlayer > valueDealer){
+        drawUntilWinOrLose();
+    }
+    else if(valuePlayer < valueDealer){
+        message.innerHTML = "Je hebt verloren!";
+    }
+    else{
+        message.innerHTML = "Je hebt verloren, je hebt evenveel als de dealer!";
+    }
+}
+
+const drawUntilWinOrLose = function(){
+    getCardsDealerHold(deck_id, 1);
 }
 
 //#region ***  Init / DOMContentLoaded                  ***********
 const init = function () {
+    cardFlipSound = new Audio('sounds/Card-flip.mp3');
     btnDrawCard = document.querySelector('.js-darw-card');
     btnNewGame = document.querySelector('.js-start-new-game');
-    placeholderCards = document.querySelector('.js-placeholder-cards');
-    cardsValue = document.querySelector('.js-cards-value');
+    btnHold = document.querySelector('.js-hold');
+    placeholderCardsPlayer = document.querySelector('.js-player-cards');
+    placeholderCardsDealer = document.querySelector('.js-dealer-cards');
+    cardsValuePlayer = document.querySelector('.js-cards-value-player');
+    cardsValueDealer = document.querySelector('.js-cards-value-dealer');
     message = document.querySelector('.js-message');
 
     btnToggleMode = document.querySelector('.js-toggle-mode');
