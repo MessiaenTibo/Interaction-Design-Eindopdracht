@@ -176,11 +176,10 @@ box-sizing: inherit;
 }
 
 .title {
-  color: #0000AC;
-  font-size: 20px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 40px;
-  margin: 0 0 24px;
+  margin: 0 24px 24px 0;
   text-decoration: none;
 }
 
@@ -367,8 +366,8 @@ display: inline;
 */
 
 .o-row {
-position: relative;
-padding: var(--global-whitespace) var(--global-whitespace) 0;
+  position: relative;
+  padding: var(--global-whitespace) var(--global-whitespace) 0;
 }
 
 .o-row--login {
@@ -814,8 +813,14 @@ fill: var(--logo__path--3--Fill);
   /* position: fixed; */
   top: 0;
   left: 0;
-  padding: 24px 24px 0px 24px;
+  padding: 0px 24px 0px 24px;
   width: 100%;
+}
+
+@media (min-width: 576px) {
+  .c-header{
+    padding: 24px 24px 0px 24px;
+  }
 }
 
 .c-header__nav {
@@ -1900,7 +1905,280 @@ h3 {
   padding-right: 0px;
   height: auto;
   width: auto;
+  /* min-width: min(80vw, 400px); */
 }
+
+/* For all cards but the first card (second child(the legend is the first child)) */
+/* 2 cards */
+.js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(1)
+{
+  margin-left: 0px;
+}
+
+/* 3 cards */
+.js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
+{
+  margin-left: -40px;
+}
+.js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
+{
+  margin-left: -40px;
+}
+
+/* 4 cards */
+.js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
+{
+  margin-left: -60px;
+}
+.js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
+{
+  margin-left: -60px;
+}
+.js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
+{
+  margin-left: -60px;
+}
+
+/* 5 cards */
+.js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
+{
+  margin-left: -70px;
+}
+.js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
+{
+  margin-left: -70px;
+}
+.js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
+{
+  margin-left: -70px;
+}
+.js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
+{
+  margin-left: -70px;
+}
+
+/* 6 cards */
+.js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+{
+  margin-left: -80px;
+}
+.js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+{
+  margin-left: -80px;
+}
+.js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+{
+  margin-left: -80px;
+}
+.js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+{
+  margin-left: -80px;
+}
+.js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+{
+  margin-left: -80px;
+}
+
+@media (min-width: 432px)
+{
+  /* For all cards but the first card (second child(the legend is the first child)) */
+
+  /* 3 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
+  {
+    margin-left: 0px;
+  }
+
+  /* 4 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
+  {
+    margin-left: -40px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
+  {
+    margin-left: -40px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
+  {
+    margin-left: -40px;
+  }
+
+  /* 5 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
+  {
+    margin-left: -60px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
+  {
+    margin-left: -60px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
+  {
+    margin-left: -60px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
+  {
+    margin-left: -60px;
+  }
+
+  /* 6 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  {
+    margin-left: -64px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  {
+    margin-left: -64px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  {
+    margin-left: -64px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  {
+    margin-left: -64px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  {
+    margin-left: -64px;
+  }
+}
+
+
+@media (min-width: 532px)
+{
+  /* For all cards but the first card (second child(the legend is the first child)) */
+  /* 4 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
+  {
+    margin-left: 0px;
+  }
+
+  /* 5 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
+  {
+    margin-left: -30px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
+  {
+    margin-left: -30px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
+  {
+    margin-left: -30px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
+  {
+    margin-left: -30px;
+  }
+
+  /* 6 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  {
+    margin-left: -50px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  {
+    margin-left: -50px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  {
+    margin-left: -50px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  {
+    margin-left: -50px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  {
+    margin-left: -50px;
+  }
+}
+
+
+@media (min-width: 632px)
+{
+  /* For all cards but the first card (second child(the legend is the first child)) */
+
+  /* 5 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
+  {
+    margin-left: 0px;
+  }
+
+  /* 6 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  {
+    margin-left: -30px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  {
+    margin-left: -30px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  {
+    margin-left: -30px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  {
+    margin-left: -30px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  {
+    margin-left: -30px;
+  }
+}
+
+@media (min-width: 732px)
+{
+  /* For all cards but the first card (second child(the legend is the first child)) */
+  /* 6 cards */
+  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  {
+    margin-left: 0px;
+  }
+  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  {
+    margin-left: 0px;
+  }
+}
+
 
 .u-invisible{
   display: none;
