@@ -41,6 +41,7 @@ src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
 
 /* global page settings */
 --global-html-color: var(--global-color-neutral-xxxx-dark);
+--global-html-color: #57211F;
 --global-html-backgroundColor: var(--global-color-neutral-xxxx-light);
 --global-selection-backgroundColor: var(--global-color-alpha);
 
@@ -1189,47 +1190,34 @@ padding-bottom: 0;
 */
 
 .c-button {
---button-borderColor: var(--global-color-alpha-dark);
---button-hover-borderColor: var(--global-color-alpha-dark);
---button-active-borderColor: var(--global-color-alpha-dark);
---button-focus-borderColor: var(--global-color-alpha-dark);
---button-backgroundColor: var(--global-color-alpha);
---button-hover-backgroundColor: var(--global-color-alpha-light);
---button-active-backgroundColor: var(--global-color-alpha-dark);
---button-focus-backgroundColor: var(--global-color-alpha);
---button-focus-boxShadow: var(--global-input-focus-boxShadow);
-font-size: 16px;
-font-weight: 600;
-border-radius: var(--global-borderRadius);
-border: 1px solid var(--button-borderColor);
-background-color: var(--button-backgroundColor);
-color: #fff;
-line-height: calc(var(--global-baseline) * 3);
-padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth))
-  var(--global-whitespace-md);
-width: 100%;
-outline: none;
-box-shadow: var(--button-boxShadow, 0);
-transition: all var(--global-transitionTiming-alpha)
-  var(--global-transitionEasing-out);
+  color: var(--global-html-color);
+  background-color: transparent;
+  border: none;
+  box-shadow: var(--global-html-color) 0px 0px 1px 1px;
+  width: 120px;
+  height: 24px;
+  opacity: 100%;
 }
 
-.c-button:hover {
-border-color: var(--button-hover-borderColor);
-background-color: var(--button-hover-backgroundColor);
+.c-button:hover:enabled{
+  box-shadow: var(--global-html-color) 0px 0px 2px 2px;
 }
 
 .c-button:focus {
-background-color: var(--button-focus-backgroundColor);
-border-color: var(--button-focus-borderColor);
-box-shadow: var(--button-focus-boxShadow);
+
+}
+.c-button:active{
+
 }
 
-.c-button:active {
-background-color: var(--button-active-backgroundColor);
-border-color: var(--button-active-borderColor);
-box-shadow: var(--button-active-boxShadow, 0);
+.c-button:enabled {
+  background-color: rgba(255, 255, 255, 0.1);
 }
+
+.c-button:disabled {
+  opacity: 0.6;
+}
+
 
 /*
   Component: Option list
@@ -1455,6 +1443,17 @@ fill: var(--global-color-neutral-x-light);
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
+/*
+  Utilities: center
+  ---
+  Utility classes to center elements
+*/
+.u-center{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 35rem;
+  text-align: center;
+}
 
 /*
   Utilities: color
@@ -2114,7 +2113,6 @@ h3 {
     margin-left: -50px;
   }
 }
-
 
 @media (min-width: 632px)
 {
