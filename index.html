@@ -25,9 +25,9 @@
                     <div class="c-nav">
                         <nav class="c-nav u-hide">
                             <ul class="o-list c-nav__list">
-                                <li class="c-nav-item">
+                                <li class="c-nav-item c-toggle-button">
                                     <label class="switch">
-                                    <input type="checkbox">
+                                    <input type="checkbox" class="c-toggle-mode js-toggle-mode" tabindex="0">
                                     <span class="slider js-toggle-mode"></span>
                                 </label></li>
                             </ul>
@@ -39,23 +39,58 @@
     </header>
     <main>
         <div class="o-container">
+            <!-- <div class="u-center">
+                <div class="u-inline-block">
+                    <div>
+                        <fieldset class="js-placeholder-cards js-dealer-cards">
+                            <legend>Dealer's cards</legend>
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset class="js-placeholder-cards js-player-cards">
+                            <legend>Your cards</legend>
+                        </fieldset>
+                    </div>
+                    <p class="js-cards-value-dealer">Dealer: <b>0</b></p>
+                    <p class="js-cards-value-player">You: <b>0</b></p>
+                    <button class="js-darw-card c-button c-button-inactive">Draw card</button>
+                    <button class="js-hold c-button c-button-active">Hold</button>
+                    <button class="js-start-new-game u-invisible c-button">Start new game</button>
+                    <p class="js-message"></p>
+                </div>
+                <div class="u-inline-block">
+                    <img class="js-play-card c-play-card" src="https://deckofcardsapi.com/static/img/9S.png" alt="card">
+                    <p>Cards</p>
+                    <p>80 left</p>
+                </div>
+            </div> -->
             <div class="u-center">
-                <div>
-                    <fieldset class="js-placeholder-cards js-dealer-cards">
-                        <legend>Dealer's cards</legend>
-                    </fieldset>
+                <div class="c-layout c-layout--gutter">
+                    <div class="c-layout__item">
+                        <div>
+                            <fieldset class="js-placeholder-cards js-dealer-cards">
+                                <legend>Dealer's cards</legend>
+                            </fieldset>
+                        </div>
+                        <div>
+                            <fieldset class="js-placeholder-cards js-player-cards">
+                                <legend>Your cards</legend>
+                            </fieldset>
+                        </div>
+                        <p class="js-cards-value-dealer">Dealer: <b>0</b></p>
+                        <p class="js-cards-value-player">You: <b>0</b></p>
+                        <button class="js-darw-card c-button c-button-inactive" tabindex="1">Draw card</button>
+                        <button class="js-hold c-button c-button-active" tabindex="2">Hold</button>
+                        <button class="js-start-new-game u-invisible c-button" tabindex="3">Start new game</button>
+                        <p class="js-message"></p>
+                    </div>
+                    <div class="c-layout__item c-deck-of-cards">
+                        <button class="js-deck c-deck" tabindex="4">
+                            <img class="js-play-card js-deck c-deck-of-cards-img c-play-card" src="img/back-of-card.png" alt="card">
+                        </button>
+                        <p class="js-cards-left">Left: 312</p>
+                    </div>
                 </div>
-                <div>
-                    <fieldset class="js-placeholder-cards js-player-cards">
-                        <legend>Your cards</legend>
-                    </fieldset>
-                </div>
-                <p class="js-cards-value-dealer">Dealer: <b>0</b></p>
-                <p class="js-cards-value-player">You: <b>0</b></p>
-                <button class="js-darw-card c-button c-button-inactive">Draw card</button>
-                <button class="js-hold c-button c-button-active">Hold</button>
-                <button class="js-start-new-game u-invisible c-button">Start new game</button>
-                <p class="js-message"></p>
             </div>
         </div>
     </main>

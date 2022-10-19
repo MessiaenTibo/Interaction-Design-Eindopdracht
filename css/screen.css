@@ -133,10 +133,19 @@ height: 2rem;
 }
 
 .switch input {
-opacity: 0;
-width: 0;
-height: 0;
+  margin: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
+
+.switch input:focus + span{
+  opacity: 1;
+  box-shadow: var(--global-html-color) 0 0 3px 3px ;
+  border: var(--global-html-color) solid 2px ;
+}
+
+
 
 .slider {
 position: absolute;
@@ -364,7 +373,6 @@ color: var(--global-placeholder-color);
 header{
 display: inline;
 }
-
 
 /*------------------------------------*\
 #OBJECTS
@@ -1003,6 +1011,71 @@ fill: var(--logo__path--3--Fill);
 }
 
 
+/*
+  Component: layout
+  ---
+*/
+.c-layout {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* justify-content: space-between; */
+}
+
+.c-deck-of-cards{
+  display: none;
+}
+
+
+@media (min-width: 1000px) {
+  .c-layout{
+    justify-content: space-between;
+  }
+  .c-deck-of-cards{
+    display: block;
+  }
+}
+
+.c-layout-detail {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 24px 0 24px 0;
+  /* justify-content: space-between; */
+}
+
+.c-layout__item {
+  /* border: .2rem solid #AAAAAA; */
+  /* padding: 6rem min(15rem,40%); */
+  /* width: min(500px,100%); */
+  /* height: 300px; */
+  /* text-align: center; */
+  /* margin: 0p 0px 90px 0px; */
+  /* box-shadow: 1px 1px 3px 3px rgb(242, 244, 246); */
+  text-align: left;
+}
+
+.c-layout__item-xl {
+  background-color: #fff;
+  width: min(600px,100%);
+  height: 100%;
+  box-shadow: 1px 1px 3px 3px rgb(242, 244, 246);
+  border-radius: 32px;
+}
+
+.c-layout--gutter{
+  margin: 0 -16px;
+}
+
+.c-layout--gutter > .c-layout__item{
+  margin: 0 16px 32px;
+}
+
 
 /*
   Component: Card
@@ -1199,17 +1272,16 @@ padding-bottom: 0;
   width: 120px;
   height: 24px;
   opacity: 100%;
+  margin: 0 0 6px 0;
 }
 
 .c-button:hover:enabled{
   box-shadow: var(--global-html-color) 0px 0px 2px 2px;
 }
 
-.c-button:focus {
-
-}
-.c-button:active{
-
+.c-button:focus{
+  outline: none;
+  box-shadow: var(--global-html-color) 0 0 3px 3px ;
 }
 
 .c-button:enabled {
@@ -1453,7 +1525,7 @@ fill: var(--global-color-neutral-x-light);
 .u-center{
   margin-left: auto;
   margin-right: auto;
-  max-width: 35rem;
+  max-width: 45rem;
   text-align: center;
 }
 
@@ -2190,4 +2262,38 @@ h3 {
 
 .u-invisible{
   display: none;
+}
+
+.u-inline-block{
+  display: inline-block;
+}
+
+.c-deck-of-cards-img{
+  margin: 0;
+  padding: 0;
+}
+
+.c-deck-of-cards-img:hover{
+  outline: none;
+  box-shadow: var(--global-html-color) 0 0 3px 3px;
+}
+
+.c-deck-of-cards-img:focus{
+  outline: none;
+  box-shadow: var(--global-html-color) 0 0 4px 4px;
+}
+
+.c-deck{
+  margin: 0;
+  padding: 0;
+}
+
+.c-deck:hover{
+  outline: none;
+  box-shadow: var(--global-html-color) 0 0 3px 3px;
+}
+
+.c-deck:focus{
+  outline: none;
+  box-shadow: var(--global-html-color) 0 0 4px 4px;
 }

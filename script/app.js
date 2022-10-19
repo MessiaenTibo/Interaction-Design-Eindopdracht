@@ -67,6 +67,7 @@ const showCardPlayer = function(data){
     });
     if(valueDealer != blackjack)
     {
+        updateCardsLeft(data.remaining);
         if(valuePlayer == blackjack){
             Hold();
         }
@@ -99,6 +100,7 @@ const showCardDealer = function(data){
     // array.forEach(function(element, index){setTimeout(function(){addCardDealer(element)},delay*index);} );
     //adding cards without delay
     array.forEach(element => {
+        updateCardsLeft(data.remaining);
         addCardDealer(element);
     });
     if(valueDealer == blackjack){
@@ -126,6 +128,7 @@ const showCardDealerHold = function(data){
     console.log(data.cards[0].image);
     array = data.cards
     array.forEach(element => {
+        updateCardsLeft(data.remaining);
         addCardDealer(element);
     });
     if(valueDealer == blackjack){
@@ -157,6 +160,10 @@ const showCardDealerHold = function(data){
             btnNewGame.classList.remove('u-invisible');
         }
     }
+}
+
+const updateCardsLeft = function(amount){
+    cardsLeft.innerHTML = `left: <b>${amount}</b>`;
 }
 
 const showDecks = function(data){
@@ -289,6 +296,11 @@ const listenToClickKnopen = function()
         console.info('Geklikt');
         Hold()
   })
+  btnDeckOfCards.addEventListener('click',function()
+  {
+    console.info('Geklikt');
+    getCardsPlayer(deck_id, 1);
+  })
 }
 
 const startNewGame = function(){
@@ -342,12 +354,13 @@ const init = function () {
     btnDrawCard = document.querySelector('.js-darw-card');
     btnNewGame = document.querySelector('.js-start-new-game');
     btnHold = document.querySelector('.js-hold');
+    btnDeckOfCards = document.querySelector('.js-deck');
     placeholderCardsPlayer = document.querySelector('.js-player-cards');
     placeholderCardsDealer = document.querySelector('.js-dealer-cards');
     cardsValuePlayer = document.querySelector('.js-cards-value-player');
     cardsValueDealer = document.querySelector('.js-cards-value-dealer');
+    cardsLeft = document.querySelector('.js-cards-left');
     message = document.querySelector('.js-message');
-
     btnToggleMode = document.querySelector('.js-toggle-mode');
 
     createDeck();
