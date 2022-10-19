@@ -310,9 +310,9 @@ const startNewGame = function(){
     amountPlayerAces = 0;
     amountDealerAces = 0;
     //Remove existing cards from player
-    placeholderCardsPlayer.innerHTML = '<legend>Deck of cards</legend>';
+    placeholderCardsPlayer.innerHTML = '<legend>Your cards</legend>';
     //Remove existing cards from dealer
-    placeholderCardsDealer.innerHTML = '<legend>Deck of cards</legend>';
+    placeholderCardsDealer.innerHTML = "<legend>Dealer's cards</legend>";
     //enable the draw card button
     btnDrawCard.disabled = false;
     //enable the hold button

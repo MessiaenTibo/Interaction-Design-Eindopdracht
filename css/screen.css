@@ -115,6 +115,7 @@ html.dark
 background: radial-gradient(rgb(10, 40, 10), rgb(10, 30, 10));
 transition: 0.4s;
 --global-html-color: var(--global-color-neutral-xxxx-light);
+--global-html-backgroundColor: #57211F;
 --global-border-color: var(--global-color-neutral-xxxx-dark)
 }
 
@@ -2296,4 +2297,26 @@ h3 {
 .c-deck:focus{
   outline: none;
   box-shadow: var(--global-html-color) 0 0 4px 4px;
+}
+
+.c-progress-bar-placeholder{
+  margin: 0;
+  padding: 0;
+  border: var(--global-html-color) 1px solid;
+  max-width: 370px;
+}
+
+.c-progress-bar{
+  margin: 4px 4px 4px 4px;
+  border: var(--global-html-color) 1px solid;
+  height: 32px;
+}
+
+.c-progress{
+  margin: 0px 0px 0px 0px;
+  padding: 0;
+  height: 32px;
+  background-color: var(--global-html-color);
+  color: var(--global-html-backgroundColor);
+  text-align: center;
 }
