@@ -127,6 +127,10 @@ transition: 0.4s;
   }
 }
 
+main{
+  padding-bottom: 16px;
+}
+
 .switch {
 position: relative;
 width: 3.5rem;
@@ -2000,65 +2004,65 @@ h3 {
 /* 3 cards */
 .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
 {
-  margin-left: -40px;
+  margin-left: -60px;
 }
 .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
 {
-  margin-left: -40px;
+  margin-left: -60px;
 }
 
 /* 4 cards */
 .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
 {
-  margin-left: -60px;
+  margin-left: -70px;
 }
 .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
 {
-  margin-left: -60px;
+  margin-left: -70px;
 }
 .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
 {
-  margin-left: -60px;
+  margin-left: -70px;
 }
 
 /* 5 cards */
 .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
 {
-  margin-left: -70px;
+  margin-left: -80px;
 }
 .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
 {
-  margin-left: -70px;
+  margin-left: -80px;
 }
 .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
 {
-  margin-left: -70px;
+  margin-left: -80px;
 }
 .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
 {
-  margin-left: -70px;
+  margin-left: -80px;
 }
 
 /* 6 cards */
 .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
 {
-  margin-left: -80px;
+  margin-left: -90px;
 }
 .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
 {
-  margin-left: -80px;
+  margin-left: -90px;
 }
 .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
 {
-  margin-left: -80px;
+  margin-left: -90px;
 }
 .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
 {
-  margin-left: -80px;
+  margin-left: -90px;
 }
 .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
 {
-  margin-left: -80px;
+  margin-left: -90px;
 }
 
 @media (min-width: 432px)
