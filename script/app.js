@@ -83,7 +83,7 @@ const showCardPlayer = function(data){
                 cardsValuePlayer.innerHTML = `Player: <b>${valuePlayer}</b>`;
             }
             else{
-                message.innerHTML = "Verbrand!";
+                message.innerHTML = "Burned!";
                 btnDrawCard.disabled = true;
                 btnHold.disabled = true;
                 btnNewGame.classList.remove('u-invisible');
