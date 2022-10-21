@@ -26,7 +26,7 @@ const toggleThemeMode = async function(){
 
 
 const getCardsPlayer = function(card_id, amount){
-    if(valuePlayer < blackjack)
+    if((valuePlayer < blackjack) & (valueDealer < blackjack))
     {
         handleData(`https://deckofcardsapi.com/api/deck/${card_id}/draw/?count=${amount}`, showCardPlayer);
     }

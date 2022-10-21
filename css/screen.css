@@ -120,7 +120,7 @@ transition: 0.4s;
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
   html {
       font-size: 20px;
       line-height: 1.6;
@@ -372,7 +372,8 @@ color: var(--global-placeholder-color);
 }
 
 header{
-display: inline;
+  display: inline;
+  height: 48px;
 }
 
 /*------------------------------------*\
@@ -659,6 +660,9 @@ line-height: normal;
 }
 }
 
+.c-header__logo{
+  height: 48px;
+}
 
 .c-icon-par:checked + .c-icon{
   fill:#D80027 ;
@@ -837,11 +841,6 @@ fill: var(--logo__path--3--Fill);
   width: 100%;
 }
 
-@media (min-width: 576px) {
-  .c-header{
-    padding: 24px 24px 0px 24px;
-  }
-}
 
 .c-header__nav {
   display: none;
@@ -1004,6 +1003,7 @@ fill: var(--logo__path--3--Fill);
       display: flex;
       margin-left: -16px;
       margin-right: -16px;
+      margin-bottom: 0;
   }
 
   .c-nav__link {
@@ -1074,7 +1074,7 @@ fill: var(--logo__path--3--Fill);
 }
 
 .c-layout--gutter > .c-layout__item{
-  margin: 0 16px 32px;
+  margin: 0 16px 0px;
 }
 
 
@@ -1977,7 +1977,7 @@ h3 {
 
 .c-play-card{
   height: 150px;
-  padding: 2px 8px 8px 0;
+  padding: 0 8px 0 0;
 }
 
 .js-placeholder-cards{
@@ -2304,6 +2304,15 @@ h3 {
   padding: 0;
   border: var(--global-html-color) 1px solid;
   max-width: 370px;
+}
+
+@media (min-width: 1000px)
+{
+  .c-progress-bar-placeholder
+  {
+    display: inline;
+    min-width: 250px;
+  }
 }
 
 .c-progress-bar{
