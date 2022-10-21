@@ -5,12 +5,17 @@ let valueDealer = 0;
 let amountDealerAces = 0;
 let person = "Player";
 let blackjack = 21;
-let delay = 400; //ms
+let delay = 800; //ms
+let winChanceValue = 0;
+let burnChanceValue = 0;
+let blackjackChanceValue = 0;
+let numbersAfterComma = 2;
+let drawChance = 17.6;
+
 const html = document.querySelector('html');
 
 const toggleThemeMode = async function(){
     let string = "";
-    console.log(!html.classList.contains('dark'));
     if(!html.classList.contains('dark'))  string = "add";
     else string = "remove";
     console.log(string);
@@ -29,6 +34,10 @@ const getCardsPlayer = function(card_id, amount){
     if((valuePlayer < blackjack) & (valueDealer < blackjack))
     {
         handleData(`https://deckofcardsapi.com/api/deck/${card_id}/draw/?count=${amount}`, showCardPlayer);
+    }
+    else
+    {
+        startNewGame();
     }
 }
 
@@ -55,13 +64,7 @@ const showCardPlayer = function(data){
         alert("No more cards left, creating new game!");
         createDeck();
     }
-    console.log(data);
-    console.log(data.cards[0].image);
-    //document.querySelector('.js-card').src = data.cards[0].image;
     array = data.cards
-    // //adding cards with delay
-    // array.forEach(function(element, index){setTimeout(function(){addCardPlayer(element)},delay*(index + 1));} );
-    //adding cards without delay
     array.forEach(element => {
         addCardPlayer(element);
     });
@@ -75,6 +78,8 @@ const showCardPlayer = function(data){
             if(amountPlayerAces > 0){
                 amountPlayerAces--;
                 valuePlayer -= 10;
+                //recalculate chances
+                showChances();
                 cardsValuePlayer.innerHTML = `Player: <b>${valuePlayer}</b>`;
             }
             else{
@@ -85,14 +90,12 @@ const showCardPlayer = function(data){
             }
         }
         else{
-            message.innerHTML = "Nog een kaartje?";
+            message.innerHTML = "Draw a card or hold.";
         }
     }
 }
 
 const showCardDealer = function(data){
-    console.log(data);
-    console.log(data.cards[0].image);
     //document.querySelector('.js-card').src = data.cards[0].image;
     array = data.cards
     let temp = 1;
@@ -104,7 +107,7 @@ const showCardDealer = function(data){
         addCardDealer(element);
     });
     if(valueDealer == blackjack){
-        message.innerHTML = "Je hebt verloren, de dealer heeft blackjack (21)!";
+        message.innerHTML = "You lost, the dealer has blackjack (21)!";
         btnDrawCard.disabled = true;
         btnHold.disabled = true;
         btnNewGame.classList.remove('u-invisible');
@@ -116,7 +119,7 @@ const showCardDealer = function(data){
             cardsValueDealer.innerHTML = `Dealer: <b>${valueDealer}</b>`;
         }
         else{
-            message.innerHTML = "Je hebt gewonnen, de dealer is verbrand!";
+            message.innerHTML = "You won, the dealer is burned!";
             btnDrawCard.disabled = true;
             btnNewGame.classList.remove('u-invisible');
         }
@@ -124,15 +127,13 @@ const showCardDealer = function(data){
 }
 
 const showCardDealerHold = function(data){
-    console.log(data);
-    console.log(data.cards[0].image);
     array = data.cards
     array.forEach(element => {
         updateCardsLeft(data.remaining);
         addCardDealer(element);
     });
     if(valueDealer == blackjack){
-        message.innerHTML = "Je hebt verloren, de dealer heeft blackjack (21)!";
+        message.innerHTML = "You lost, the dealer has blackjack (21)!";
         btnDrawCard.disabled = true;
         btnNewGame.classList.remove('u-invisible');
     }
@@ -144,7 +145,7 @@ const showCardDealerHold = function(data){
             setTimeout(function(){getCardsDealerHold(deck_id, 1)},delay);
         }
         else{
-            message.innerHTML = "Je hebt gewonnen, de dealer is verbrand!";
+            message.innerHTML = "You won, the dealer is burned!";
             btnDrawCard.disabled = true;
             btnNewGame.classList.remove('u-invisible');
         }
@@ -153,8 +154,11 @@ const showCardDealerHold = function(data){
         if(valueDealer < valuePlayer){
             setTimeout(function(){getCardsDealerHold(deck_id, 1)},delay);
         }
+        else if (valueDealer == valuePlayer){
+            message.innerHTML = "You lost, the dealer has the same value as you!";
+        }
         else{
-            message.innerHTML = "Je hebt verloren, de dealer heeft meer punten!";
+            message.innerHTML = "You lost, the dealer has a higher value than you!";
             btnDrawCard.disabled = true;
             btnHold.disabled = true;
             btnNewGame.classList.remove('u-invisible');
@@ -172,14 +176,12 @@ const showDecks = function(data){
 }
 
 const showDeckDealer = function(data){
-    console.log(data);
     amount = 2;
     deck_id = data['deck_id'];
     getCardsDealer(deck_id, amount);
 }
 
 const showDeckPlayer = function(data){
-    console.log(data);
     amount = 2;
     deck_id = data['deck_id'];
     getCardsPlayer(deck_id, amount);
@@ -190,6 +192,8 @@ const addCardPlayer = function(card){
     placeholderCardsPlayer.innerHTML += `<img class="js-play-card c-play-card" src="${card.image}" alt="card">`;
     valuePlayer += getCardValuePlayer(card.value);
     cardsValuePlayer.innerHTML = `Player: <b>${valuePlayer}</b>`;
+
+    showChances();
 }
 
 const addCardDealer = function(card){
@@ -197,6 +201,8 @@ const addCardDealer = function(card){
     placeholderCardsDealer.innerHTML += `<img class="js-play-card c-play-card" src="${card.image}" alt="card">`;
     valueDealer += getCardValueDealer(card.value);
     cardsValueDealer.innerHTML = `Dealer: <b>${valueDealer}</b>`;
+
+    showChances();
 }
 
 const getCardValuePlayer = function(valueTag)
@@ -282,7 +288,6 @@ const listenToClickKnopen = function()
   btnNewGame.addEventListener('click',function()
   {
     console.info('Geklikt');
-    btnNewGame.classList.add('u-invisible');
     startNewGame();
   })
 
@@ -304,6 +309,8 @@ const listenToClickKnopen = function()
 }
 
 const startNewGame = function(){
+    //remove btnNewGame
+    btnNewGame.classList.add('u-invisible');
     //Reset values
     valuePlayer = 0;
     valueDealer = 0;
@@ -337,10 +344,10 @@ const Hold = function(){
         drawUntilWinOrLose();
     }
     else if(valuePlayer < valueDealer){
-        message.innerHTML = "Je hebt verloren!";
+        message.innerHTML = "you lost, the dealer has a higher value than you!";
     }
     else{
-        message.innerHTML = "Je hebt verloren, je hebt evenveel als de dealer!";
+        message.innerHTML = "you lost, the dealer has the same value as you!";
     }
 }
 
@@ -348,21 +355,128 @@ const drawUntilWinOrLose = function(){
     getCardsDealerHold(deck_id, 1);
 }
 
+const showChances = function(){
+    //Check the win chance
+    calculateWinChance();
+
+    //Check the burn chance on next hit
+    calculateBurnChance();
+
+    //Check blackjack chance on next hit
+    calculateBlackjackChance();
+}
+
+
+const calculateWinChance = function(){
+    if(valuePlayer < valueDealer)
+    {
+        if(valueDealer > 21)
+        {
+            winChanceValue = 100;
+        }
+        else
+        {
+            winChanceValue = 0;
+        }
+    }
+    else if(valuePlayer == valueDealer) {winChanceValue = 0;}
+    else if(valuePlayer <= 11) {winChanceValue = 0;}
+    else if(valueDealer == blackjack) {winChanceValue = 0;}
+    else if(valuePlayer == blackjack) {winChanceValue = (100 - drawChance);}
+    else if(valuePlayer == (blackjack -1)) {winChanceValue = (((12/13)*100) - drawChance).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack -2)) {winChanceValue = (((11/13)*100) - drawChance).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack -3)) {winChanceValue = (((10/13)*100) - drawChance).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack -4)) {winChanceValue = (((9/13)*100) - drawChance).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack -5)) {winChanceValue = (((8/13)*100) - drawChance).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack -6)) {winChanceValue = (((7/13)*100) - drawChance).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack -7)) {winChanceValue = (((6/13)*100) - drawChance).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack -8)) {winChanceValue = (((5/13)*100) - drawChance).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack -9)) {winChanceValue = (((4/13)*100) - drawChance).toFixed(numbersAfterComma);}
+    else
+    {
+        winChanceValue = 0;
+    }
+
+    winChance.innerHTML = "<b>" + winChanceValue + "%</b>";
+    winChance.style.width = winChanceValue + "%";
+}
+
+const calculateBurnChance = function(){
+    if(valuePlayer == blackjack) {burnChanceValue = 100;}
+    else if(valuePlayer > blackjack) {burnChanceValue = 100;}
+    else if(amountPlayerAces > 0) {burnChanceValue = 0;}
+    else if(valuePlayer == (blackjack - 1)) {burnChanceValue = ((12/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 2)) {burnChanceValue = ((11/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 3)) {burnChanceValue = ((10/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 4)) {burnChanceValue = ((9/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 5)) {burnChanceValue = ((8/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 6)) {burnChanceValue = ((7/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 7)) {burnChanceValue = ((6/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 8)) {burnChanceValue = ((5/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 9)) {burnChanceValue = ((4/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 10)) {burnChanceValue = 0;}
+    else if(valuePlayer == (blackjack - 11)) {burnChanceValue = 0;}
+    else if(valuePlayer == (blackjack - 12)) {burnChanceValue = 0}
+    else if(valuePlayer < (blackjack - 12)) {burnChanceValue = 0;}
+    else
+    {
+        burnChanceValue = 0;
+    }
+    burnChance.innerHTML = "<b>" + burnChanceValue + "%</b>";
+    burnChance.style.width = burnChanceValue + "%";
+}
+
+const calculateBlackjackChance = function(){
+    if(valuePlayer == blackjack) {blackjackChanceValue = 100;}
+    else if(valuePlayer == (blackjack - 1)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 2)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 3)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 4)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 5)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 6)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 7)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 8)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 9)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
+    else if(valuePlayer == (blackjack - 10)) {blackjackChanceValue = ((3/13)*100).toFixed(numbersAfterComma);} //K, Q, J
+    else if(valuePlayer == (blackjack - 11)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);} //A
+    else
+    {
+        blackjackChanceValue = 0;
+    }
+    blackjackChance.innerHTML = "<b>" + blackjackChanceValue + "%</b>";
+    blackjackChance.style.width = blackjackChanceValue + "%";
+}
+
 //#region ***  Init / DOMContentLoaded                  ***********
 const init = function () {
+    //Sound
     cardFlipSound = new Audio('sounds/Card-flip.mp3');
+
+    //Buttons
     btnDrawCard = document.querySelector('.js-darw-card');
     btnNewGame = document.querySelector('.js-start-new-game');
     btnHold = document.querySelector('.js-hold');
     btnDeckOfCards = document.querySelector('.js-deck');
+    btnToggleMode = document.querySelector('.js-toggle-mode');
+
+    //placeholders
     placeholderCardsPlayer = document.querySelector('.js-player-cards');
     placeholderCardsDealer = document.querySelector('.js-dealer-cards');
+
+    //Values
     cardsValuePlayer = document.querySelector('.js-cards-value-player');
     cardsValueDealer = document.querySelector('.js-cards-value-dealer');
     cardsLeft = document.querySelector('.js-cards-left');
-    message = document.querySelector('.js-message');
-    btnToggleMode = document.querySelector('.js-toggle-mode');
 
+    //Message
+    message = document.querySelector('.js-message');
+    //Percentages
+    winChance = document.querySelector('.js-win-chance');
+    //winChance.style.width = "60%";
+    burnChance = document.querySelector('.js-burn-chance');
+    blackjackChance = document.querySelector('.js-blackjack-chance');
+
+    //Methods
     createDeck();
     listenToClickKnopen();
 };
