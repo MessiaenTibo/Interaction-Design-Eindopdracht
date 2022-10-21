@@ -437,7 +437,7 @@ const calculateBlackjackChance = function(){
     else if(valuePlayer == (blackjack - 7)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
     else if(valuePlayer == (blackjack - 8)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
     else if(valuePlayer == (blackjack - 9)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
-    else if(valuePlayer == (blackjack - 10)) {blackjackChanceValue = ((3/13)*100).toFixed(numbersAfterComma);} //K, Q, J
+    else if(valuePlayer == (blackjack - 10)) {blackjackChanceValue = ((4/13)*100).toFixed(numbersAfterComma);} //K, Q, J
     else if(valuePlayer == (blackjack - 11)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);} //A
     else
     {

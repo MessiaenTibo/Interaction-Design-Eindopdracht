@@ -2304,6 +2304,7 @@ h3 {
   padding: 0;
   border: var(--global-html-color) 1px solid;
   max-width: 370px;
+  margin-bottom: 16px;
 }
 
 @media (min-width: 1000px)
@@ -2313,6 +2314,7 @@ h3 {
     display: inline;
     min-width: 250px;
     margin-right: 4px;
+    margin-bottom: 0px;
   }
 }
 
