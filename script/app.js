@@ -22,10 +22,12 @@ const toggleThemeMode = async function(){
     if(string == "add")
     {
         html.classList.add('dark');
+        // document.querySelector(".js-darw-card").classList.remove('c-button-dark');
     }
     if(string == "remove")
     {
         html.classList.remove('dark');
+        // document.querySelector(".js-darw-card").classList.add('c-button-dark');
     }
 }
 
@@ -446,7 +448,7 @@ const calculateBlackjackChance = function(){
     blackjackChance.innerHTML = "<b>" + blackjackChanceValue + "%</b>";
     if(blackjackChanceValue > 50)
     {
-        
+
     }
     else
     {

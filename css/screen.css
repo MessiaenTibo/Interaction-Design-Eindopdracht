@@ -83,6 +83,9 @@ src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
   var(--global-input-focus-boxShadowColor);
 --global-color-error: #ff3333;
 --global-input-error-borderColor: #ff3333;
+
+/* transition */
+--global-transition-delay: 0.4s;
 }
 
 /*------------------------------------*\
@@ -96,6 +99,7 @@ src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
 */
 
 html {
+  transition: var(--global-transition-delay);
   background: radial-gradient(rgb(48, 136, 52), rgb(27, 76, 29));
   color: var(--global-html-color);
   font-size: 16px;
@@ -106,19 +110,17 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
-  transition: 0.4s;
   padding: 24px 24px 0px;
   --global-border-color: var(--global-color-neutral-xxxx-dark)
 }
 
 html.dark
 {
-background: radial-gradient(rgb(10, 40, 10), rgb(10, 30, 10));
-transition: 0.4s;
---global-html-color: var(--global-color-neutral-xxxx-light);
---global-html-color-opacity: rgba(255, 255, 255, 0.3);
---global-html-backgroundColor: #57211F;
---global-border-color: var(--global-color-neutral-xxxx-dark)
+  background: radial-gradient(rgb(10, 40, 10), rgb(10, 30, 10));
+  --global-html-color: var(--global-color-neutral-xxxx-light);
+  --global-html-color-opacity: rgba(255, 255, 255, 0.3);
+  --global-html-backgroundColor: #57211F;
+  --global-border-color: var(--global-color-neutral-xxxx-dark)
 }
 
 
@@ -148,8 +150,8 @@ height: 2rem;
 
 .switch input:focus + span{
   opacity: 1;
-  box-shadow: var(--global-html-color) 0 0 3px 3px ;
-  border: var(--global-html-color) solid 2px ;
+  box-shadow: 0 0 3px 3px ;
+  border: solid 2px ;
 }
 
 
@@ -163,9 +165,8 @@ right: 0;
 bottom: 0;
 /* background-color: #ccc; */
 background-color: rgba(0, 0, 0, 0.2);
-transition: 0.4s;
 border-radius: 30px;
-border: var(--global-html-color) solid 2px;
+border: solid 2px;
 }
 
 .slider:before{
@@ -176,7 +177,7 @@ width: 1.4rem;
 left: 0.3rem;
 border-radius: 20px;
 top: 50%;
-transition: 0.4s;
+transition: var(--global-transition-delay);
 transform: translateY(-50%);
 background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
 }
@@ -1272,23 +1273,26 @@ padding-bottom: 0;
 */
 
 .c-button {
-  color: var(--global-html-color);
-  background-color: transparent;
+  transition: var(--global-transition-delay);
   border: none;
-  box-shadow: var(--global-html-color) 0px 0px 1px 1px;
+  box-shadow: 0px 0px 1px 1px;
   width: 120px;
   height: 24px;
-  opacity: 100%;
   margin: 0 0 6px 0;
+  color: var(--global-html-color);
+}
+.c-button-dark{
+  color: var(--global-html-color);
+  background: var(--global-html-backgroundColor);
 }
 
 .c-button:hover:enabled{
-  box-shadow: var(--global-html-color) 0px 0px 2px 2px;
+  box-shadow: 0px 0px 2px 2px;
 }
 
 .c-button:focus{
   outline: none;
-  box-shadow: var(--global-html-color) 0 0 3px 3px ;
+  box-shadow: 0 0 3px 3px ;
 }
 
 .c-button:enabled {
@@ -1296,7 +1300,7 @@ padding-bottom: 0;
 }
 
 .c-button:disabled {
-  opacity: 0.6;
+  background-color: white 0.2;
 }
 
 
@@ -2382,7 +2386,7 @@ h3 {
 .c-progress-bar-placeholder{
   margin: 0;
   padding: 0;
-  border: var(--global-html-color) 1px solid;
+  border: 1px solid;
   max-width: 370px;
   margin-bottom: 16px;
 }
@@ -2400,16 +2404,14 @@ h3 {
 
 .c-progress-bar{
   margin: 4px 4px 4px 4px;
-  border: var(--global-html-color) 1px solid;
-  height: 32px;
+  border: 1px solid;
+  height: 1.8rem;
 }
 
 .c-progress{
   margin: 0px 0px 0px 0px;
   padding: 0;
-  height: 32px;
-  background-color: var(--global-html-color);
-  color: var(--global-html-backgroundColor);
+  height: 1.8rem;
   background-color: var(--global-html-color-opacity);
   color: white;
   text-align: center;
