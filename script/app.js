@@ -444,6 +444,14 @@ const calculateBlackjackChance = function(){
         blackjackChanceValue = 0;
     }
     blackjackChance.innerHTML = "<b>" + blackjackChanceValue + "%</b>";
+    if(blackjackChanceValue > 50)
+    {
+        
+    }
+    else
+    {
+
+    }
     blackjackChance.style.width = blackjackChanceValue + "%";
 }
 
@@ -472,7 +480,6 @@ const init = function () {
     message = document.querySelector('.js-message');
     //Percentages
     winChance = document.querySelector('.js-win-chance');
-    //winChance.style.width = "60%";
     burnChance = document.querySelector('.js-burn-chance');
     blackjackChance = document.querySelector('.js-blackjack-chance');
 

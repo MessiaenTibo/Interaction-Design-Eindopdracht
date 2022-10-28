@@ -42,6 +42,7 @@ src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
 /* global page settings */
 --global-html-color: var(--global-color-neutral-xxxx-dark);
 --global-html-color: #57211F;
+--global-html-color-opacity: rgba(87, 33, 31, 0.5);
 --global-html-backgroundColor: var(--global-color-neutral-xxxx-light);
 --global-selection-backgroundColor: var(--global-color-alpha);
 
@@ -115,6 +116,7 @@ html.dark
 background: radial-gradient(rgb(10, 40, 10), rgb(10, 30, 10));
 transition: 0.4s;
 --global-html-color: var(--global-color-neutral-xxxx-light);
+--global-html-color-opacity: rgba(255, 255, 255, 0.3);
 --global-html-backgroundColor: #57211F;
 --global-border-color: var(--global-color-neutral-xxxx-dark)
 }
@@ -2408,6 +2410,8 @@ h3 {
   height: 32px;
   background-color: var(--global-html-color);
   color: var(--global-html-backgroundColor);
+  background-color: var(--global-html-color-opacity);
+  color: white;
   text-align: center;
   transition: width 1s ease-out;
 }
