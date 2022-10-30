@@ -3,7 +3,6 @@ let valuePlayer = 0;
 let amountPlayerAces = 0;
 let valueDealer = 0;
 let amountDealerAces = 0;
-let person = "Player";
 let blackjack = 21;
 let delay = 800; //ms
 let winChanceValue = 0;
@@ -438,22 +437,14 @@ const calculateBlackjackChance = function(){
     else if(valuePlayer == (blackjack - 6)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
     else if(valuePlayer == (blackjack - 7)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
     else if(valuePlayer == (blackjack - 8)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
-    else if(valuePlayer == (blackjack - 9)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);}
-    else if(valuePlayer == (blackjack - 10)) {blackjackChanceValue = ((4/13)*100).toFixed(numbersAfterComma);} //K, Q, J
+    else if(valuePlayer == (blackjack - 9)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);} 
+    else if(valuePlayer == (blackjack - 10)) {blackjackChanceValue = ((4/13)*100).toFixed(numbersAfterComma);} //4/13 because of 10, J, Q, K
     else if(valuePlayer == (blackjack - 11)) {blackjackChanceValue = ((1/13)*100).toFixed(numbersAfterComma);} //A
     else
     {
         blackjackChanceValue = 0;
     }
     blackjackChance.innerHTML = "<b>" + blackjackChanceValue + "%</b>";
-    if(blackjackChanceValue > 50)
-    {
-
-    }
-    else
-    {
-
-    }
     blackjackChance.style.width = blackjackChanceValue + "%";
 }
 

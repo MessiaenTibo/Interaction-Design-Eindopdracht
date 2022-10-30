@@ -40,11 +40,12 @@ src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
 --global-color-neutral-xxxx-dark: #20223a;
 
 /* global page settings */
---global-html-color: var(--global-color-neutral-xxxx-dark);
+--global-background-color: radial-gradient(rgb(48, 136, 52), rgb(27, 76, 29));
 --global-html-color: #57211F;
 --global-html-color-opacity: rgba(87, 33, 31, 0.5);
 --global-html-backgroundColor: var(--global-color-neutral-xxxx-light);
 --global-selection-backgroundColor: var(--global-color-alpha);
+
 
 /* borders */
 --global-borderRadius: 3px;
@@ -85,7 +86,7 @@ src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
 --global-input-error-borderColor: #ff3333;
 
 /* transition */
---global-transition-delay: 0.4s;
+--global-transition-delay: 0.4s; /* 0.4s seconds */
 }
 
 /*------------------------------------*\
@@ -100,7 +101,7 @@ src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
 
 html {
   transition: var(--global-transition-delay);
-  background: radial-gradient(rgb(48, 136, 52), rgb(27, 76, 29));
+  background: var(--global-background-color);
   color: var(--global-html-color);
   font-size: 16px;
   font-weight: 400;
@@ -116,7 +117,7 @@ html {
 
 html.dark
 {
-  background: radial-gradient(rgb(10, 40, 10), rgb(10, 30, 10));
+  --global-background-color: radial-gradient(rgb(10, 40, 10), rgb(10, 30, 10));
   --global-html-color: var(--global-color-neutral-xxxx-light);
   --global-html-color-opacity: rgba(255, 255, 255, 0.3);
   --global-html-backgroundColor: #57211F;
@@ -1086,6 +1087,88 @@ fill: var(--logo__path--3--Fill);
 
 
 /*
+  Component: Progress-bar
+  ---
+  Progress-bar for showing procentages
+*/
+
+.c-progress-bar-placeholder{
+  margin: 0;
+  padding: 0;
+  border: 1px solid;
+  max-width: 370px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 1000px)
+{
+  .c-progress-bar-placeholder
+  {
+    display: inline;
+    min-width: 250px;
+    margin-right: 4px;
+    margin-bottom: 0px;
+  }
+}
+
+.c-progress-bar{
+  margin: 4px 4px 4px 4px;
+  border: 1px solid;
+  height: 1.8rem;
+}
+
+.c-progress{
+  margin: 0px 0px 0px 0px;
+  padding: 0;
+  height: 1.8rem;
+  background-color: var(--global-html-color-opacity);
+  color: white;
+  text-align: center;
+  transition: width 1s ease-out;
+}
+
+
+
+/*
+  Component: deck-of-cards
+  ---
+  The deck of cards
+*/
+
+
+.c-deck-of-cards-img{
+  margin: 0;
+  padding: 0;
+}
+
+.c-deck-of-cards-img:hover{
+  outline: none;
+  box-shadow: var(--global-html-color) 0 0 3px 3px;
+}
+
+.c-deck-of-cards-img:focus{
+  outline: none;
+  box-shadow: var(--global-html-color) 0 0 4px 4px;
+}
+
+.c-deck{
+  margin: 0;
+  padding: 0;
+}
+
+.c-deck:hover{
+  outline: none;
+  box-shadow: var(--global-html-color) 0 0 3px 3px;
+}
+
+.c-deck:focus{
+  outline: none;
+  box-shadow: var(--global-html-color) 0 0 4px 4px;
+}
+
+
+
+/*
   Component: Card
   ---
   Card with box shadow
@@ -1301,6 +1384,7 @@ padding-bottom: 0;
 
 .c-button:disabled {
   background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
 }
 
 
@@ -1538,6 +1622,26 @@ fill: var(--global-color-neutral-x-light);
   margin-right: auto;
   max-width: 50rem;
   text-align: center;
+}
+
+/*
+  Utilities: inline-block
+  ---
+  Utility classes to make elements inline-block
+*/
+
+.u-inline-block{
+  display: inline-block;
+}
+
+/*
+  Utilities: invisible
+  ---
+  Utility classes to make elements invisible
+*/
+
+.u-invisible{
+  display: none;
 }
 
 /*
@@ -1990,7 +2094,7 @@ h3 {
   padding: 0 8px 0 0;
 }
 
-.js-placeholder-cards{
+.c-placeholder-cards{
   display: inline;
   border: solid 1px;
   padding: 8px;
@@ -2000,73 +2104,76 @@ h3 {
   /* min-width: min(80vw, 400px); */
 }
 
+
+
+
 /* For all cards but the first card (second child(the legend is the first child)) */
   /* 2 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(1)
   {
     margin-left: 0px;
   }
 
   /* 3 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
   {
     margin-left: -60px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
   {
     margin-left: -60px;
   }
 
   /* 4 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
   {
     margin-left: -80px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
   {
     margin-left: -80px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
   {
     margin-left: -80px;
   }
 
   /* 5 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
   {
     margin-left: -90px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
   {
     margin-left: -90px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
   {
     margin-left: -90px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
   {
     margin-left: -90px;
   }
 
   /* 6 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
   {
     margin-left: -100px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
   {
     margin-left: -100px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
   {
     margin-left: -100px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
   {
     margin-left: -100px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
   {
     margin-left: -100px;
   }
@@ -2075,71 +2182,71 @@ h3 {
 @media (min-width: 375px)
 {
   /* 2 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(1)
   {
     margin-left: 0px;
   }
 
   /* 3 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
   {
     margin-left: -60px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
   {
     margin-left: -60px;
   }
 
   /* 4 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
   {
     margin-left: -70px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
   {
     margin-left: -70px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
   {
     margin-left: -70px;
   }
 
   /* 5 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
   {
     margin-left: -80px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
   {
     margin-left: -80px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
   {
     margin-left: -80px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
   {
     margin-left: -80px;
   }
 
   /* 6 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
   {
     margin-left: -90px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
   {
     margin-left: -90px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
   {
     margin-left: -90px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
   {
     margin-left: -90px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
   {
     margin-left: -90px;
   }
@@ -2150,65 +2257,65 @@ h3 {
   /* For all cards but the first card (second child(the legend is the first child)) */
 
   /* 3 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
   {
     margin-left: 0px;
   }
 
   /* 4 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
   {
     margin-left: -40px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
   {
     margin-left: -40px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
   {
     margin-left: -40px;
   }
 
   /* 5 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
   {
     margin-left: -60px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
   {
     margin-left: -60px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
   {
     margin-left: -60px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
   {
     margin-left: -60px;
   }
 
   /* 6 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
   {
     margin-left: -64px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  .c-placeholder-cards.c-play-card:nth-child(4):nth-last-child(4)
   {
     margin-left: -64px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
   {
     margin-left: -64px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
   {
     margin-left: -64px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
   {
     margin-left: -64px;
   }
@@ -2219,55 +2326,55 @@ h3 {
 {
   /* For all cards but the first card (second child(the legend is the first child)) */
   /* 4 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
   {
     margin-left: 0px;
   }
 
   /* 5 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
   {
     margin-left: -30px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
   {
     margin-left: -30px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
   {
     margin-left: -30px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
   {
     margin-left: -30px;
   }
 
   /* 6 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
   {
     margin-left: -50px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
   {
     margin-left: -50px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
   {
     margin-left: -50px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
   {
     margin-left: -50px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
   {
     margin-left: -50px;
   }
@@ -2278,41 +2385,41 @@ h3 {
   /* For all cards but the first card (second child(the legend is the first child)) */
 
   /* 5 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(4)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(3)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(2)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(1)
   {
     margin-left: 0px;
   }
 
   /* 6 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
   {
     margin-left: -30px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
   {
     margin-left: -30px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
   {
     margin-left: -30px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
   {
     margin-left: -30px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
   {
     margin-left: -30px;
   }
@@ -2322,98 +2429,24 @@ h3 {
 {
   /* For all cards but the first card (second child(the legend is the first child)) */
   /* 6 cards */
-  .js-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
+  .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(5)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
+  .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(3)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
+  .c-placeholder-cards .c-play-card:nth-child(6):nth-last-child(2)
   {
     margin-left: 0px;
   }
-  .js-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
+  .c-placeholder-cards .c-play-card:nth-child(7):nth-last-child(1)
   {
     margin-left: 0px;
   }
-}
-
-
-.u-invisible{
-  display: none;
-}
-
-.u-inline-block{
-  display: inline-block;
-}
-
-.c-deck-of-cards-img{
-  margin: 0;
-  padding: 0;
-}
-
-.c-deck-of-cards-img:hover{
-  outline: none;
-  box-shadow: var(--global-html-color) 0 0 3px 3px;
-}
-
-.c-deck-of-cards-img:focus{
-  outline: none;
-  box-shadow: var(--global-html-color) 0 0 4px 4px;
-}
-
-.c-deck{
-  margin: 0;
-  padding: 0;
-}
-
-.c-deck:hover{
-  outline: none;
-  box-shadow: var(--global-html-color) 0 0 3px 3px;
-}
-
-.c-deck:focus{
-  outline: none;
-  box-shadow: var(--global-html-color) 0 0 4px 4px;
-}
-
-.c-progress-bar-placeholder{
-  margin: 0;
-  padding: 0;
-  border: 1px solid;
-  max-width: 370px;
-  margin-bottom: 16px;
-}
-
-@media (min-width: 1000px)
-{
-  .c-progress-bar-placeholder
-  {
-    display: inline;
-    min-width: 250px;
-    margin-right: 4px;
-    margin-bottom: 0px;
-  }
-}
-
-.c-progress-bar{
-  margin: 4px 4px 4px 4px;
-  border: 1px solid;
-  height: 1.8rem;
-}
-
-.c-progress{
-  margin: 0px 0px 0px 0px;
-  padding: 0;
-  height: 1.8rem;
-  background-color: var(--global-html-color-opacity);
-  color: white;
-  text-align: center;
-  transition: width 1s ease-out;
 }
