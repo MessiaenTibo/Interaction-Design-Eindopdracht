@@ -1150,6 +1150,7 @@ fill: var(--logo__path--3--Fill);
 .c-deck-of-cards-img{
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 
 .c-deck-of-cards-img:hover{
@@ -1735,9 +1736,10 @@ padding-bottom: 0;
 */
 
 .c-button {
-  transition: var(--global-transition-delay);
-  border: none;
+  /*No transition, otherwise border glitch when hovering*/
   box-shadow: 0px 0px 1px 1px;
+  cursor: pointer;
+  border: none;
   width: 120px;
   height: 24px;
   margin: 0 0 6px 0;
@@ -1752,7 +1754,8 @@ padding-bottom: 0;
   box-shadow: 0px 0px 2px 2px;
 }
 
-.c-button:focus{
+/*:not(:disabled), needed because a button can be focused while disabled in some browsers*/
+.c-button:focus:not(:disabled){
   outline: none;
   box-shadow: 0 0 3px 3px ;
 }
