@@ -872,7 +872,7 @@ fill: var(--logo__path--3--Fill);
 */
 
 .c-play-card{
-  height: calc(150rem / 20);
+  height: 150px;
   padding: 0 calc(8rem / var(--global-root-font-size))  0 0;
 }
 
@@ -966,24 +966,29 @@ overflow: hidden;
   .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(2)
   {
     margin-left: calc(-60rem / var(--global-root-font-size));
+    margin-left: -60px;
   }
   .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(1)
   {
     margin-left: calc(-60rem / var(--global-root-font-size));
+    margin-left: -60px;
   }
 
   /* 4 cards */
   .c-placeholder-cards .c-play-card:nth-child(3):nth-last-child(3)
   {
     margin-left: calc(-80rem / var(--global-root-font-size));
+    margin-left: -80px;
   }
   .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(2)
   {
     margin-left: calc(-80rem / var(--global-root-font-size));
+    margin-left: -80px;
   }
   .c-placeholder-cards .c-play-card:nth-child(5):nth-last-child(1)
   {
     margin-left: calc(-80rem / var(--global-root-font-size));
+    margin-left: -80px;
   }
 
   /* 5 cards */
