@@ -27,7 +27,8 @@ src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
   --global-html-color: #57211F;
   --global-html-color-opacity: rgba(87, 33, 31, 0.5);
   --global-html-backgroundColor: var(--global-color-neutral-xxxx-light);
-  --global-selection-backgroundColor: var(--global-color-alpha);
+  --global-selection-backgroundColor: var(--global-html-color-opacity);
+  --global-selection-color: var(--global-html-backgroundColor);
 
 
   /* borders */
@@ -166,13 +167,13 @@ box-sizing: inherit;
 
 ::-moz-selection {
 background: var(--global-selection-backgroundColor);
-color: white;
+color: var(--global-selection-color);
 text-shadow: none;
 }
 
 ::selection {
 background: var(--global-selection-backgroundColor);
-color: white;
+color: var(--global-selection-color);
 text-shadow: none;
 }
 

@@ -14,6 +14,7 @@ let drawChance = 17.6;
 const html = document.querySelector('html');
 
 const toggleThemeMode = async function(){
+    checkFavicon();
     let string = "";
     if(!html.classList.contains('dark'))  string = "add";
     else string = "remove";
@@ -448,6 +449,16 @@ const calculateBlackjackChance = function(){
     blackjackChance.style.width = blackjackChanceValue + "%";
 }
 
+const checkFavicon = function(){
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.getElementById('faviconTag').href = "img/faviconDark.ico";
+    }
+    else
+    {
+        document.getElementById('faviconTag').href = "img/faviconLight.ico";
+    }
+}
+
 //#region ***  Init / DOMContentLoaded                  ***********
 const init = function () {
     //Sound
@@ -475,6 +486,9 @@ const init = function () {
     winChance = document.querySelector('.js-win-chance');
     burnChance = document.querySelector('.js-burn-chance');
     blackjackChance = document.querySelector('.js-blackjack-chance');
+
+    //favicon
+    checkFavicon();
 
     //Methods
     createDeck();
