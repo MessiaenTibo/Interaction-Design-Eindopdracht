@@ -821,7 +821,6 @@ fill: var(--logo__path--3--Fill);
     play card
 */
 
-
 .c-play-card{
   height: calc(150rem / 16);
   padding: 0 calc(8rem / var(--global-root-font-size))  0 0;
