@@ -3,7 +3,7 @@ let valuePlayer = 0;
 let amountPlayerAces = 0;
 let valueDealer = 0;
 let amountDealerAces = 0;
-let blackjack = 21;
+let blackjack = 21; //21
 let delay = 800; //ms
 let winChanceValue = 0;
 let burnChanceValue = 0;
@@ -22,12 +22,10 @@ const toggleThemeMode = async function(){
     if(string == "add")
     {
         html.classList.add('dark');
-        // document.querySelector(".js-darw-card").classList.remove('c-button-dark');
     }
     if(string == "remove")
     {
         html.classList.remove('dark');
-        // document.querySelector(".js-darw-card").classList.add('c-button-dark');
     }
 }
 
@@ -298,6 +296,7 @@ const listenToClickKnopen = function()
     console.info('Geklikt');
     toggleThemeMode();
   })
+  
   btnHold.addEventListener('click',function()
   {
         console.info('Geklikt');

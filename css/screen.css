@@ -61,7 +61,7 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
+  min-height: 100%;
   padding: calc(24rem / var(--global-root-font-size)) calc(24rem / var(--global-root-font-size)) calc(0rem / var(--global-root-font-size));
   --global-border-color: var(--global-color-neutral-xxxx-dark)
 }
@@ -79,6 +79,7 @@ html.dark
 @media (min-width: 1000px) {
   html {
     font-size: calc(20rem / var(--global-root-font-size));
+    --global-root-font-size: 20;
     line-height: 1.6;
   }
 }
@@ -132,6 +133,11 @@ top: 50%;
 transition: var(--global-transition-delay);
 transform: translateY(-50%);
 background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+}
+
+input:hover + .slider { 
+  outline: none;
+  box-shadow: 0 0 calc(2rem / var(--global-root-font-size))  calc(2rem / var(--global-root-font-size)) ;
 }
 
 input:checked + .slider {
@@ -414,63 +420,7 @@ line-height: normal;
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
-.c-header__mobile-nav-trigger{
-  display: none;
-}
 
-@media (max-width: 768px){
-.c-header-nav__disappear{
-  display: none;
-} 
-.c-header__mobile-nav-trigger{
-  display: block;
-}
-}
-
-.c-header__logo{
-  height: calc(48rem / var(--global-root-font-size));
-}
-
-.c-icon-par:checked + .c-icon{
-  fill:#D80027 ;
-  transform: rotate(360deg);
-}
-.c-form-field {
-position: relative;
-} 
-.c-icon{
-width: var(--global-whitespace);
-height: var(--global-whitespace);
-fill: var(--global-color-neutral-x-light);
-transition: 0.5s;
-}
-.c-form-field .is-floating {transform: translateY( calc(-24rem / var(--global-root-font-size)) );}
-.c-form-field:focus-within .c-label-flouting {transform: translateY( calc(-24rem / var(--global-root-font-size)) );}
-.has-error {
---label-color: var(--global-color-error);
---input-borderColor: var(--global-input-error-borderColor);
-}
-.c-toggle-password__checkbox:checked
-+ .c-toggle-password__label
-.c-toggle-password__icon--show {
-display: block;
-}
-.c-toggle-password__checkbox:checked
-+ .c-toggle-password__label
-.c-toggle-password__icon--hide {
-display: none;
-}
-.c-toggle-password__icon--show {
-display: none;
-}
-.c-toggle-password {
-width: var(--global-whitespace);
-height: var(--global-whitespace);
-position: absolute;
-top: calc(var(--global-whitespace) / 2);
-right: calc(var(--global-whitespace) / 2);
-fill: var(--global-color-neutral-x-light);
-}
 /*
   Component: Logo
   ---
@@ -872,7 +822,7 @@ fill: var(--logo__path--3--Fill);
 */
 
 .c-play-card{
-  height: 150px;
+  height: calc(150rem / 16);
   padding: 0 calc(8rem / var(--global-root-font-size))  0 0;
 }
 
@@ -893,12 +843,12 @@ fill: var(--logo__path--3--Fill);
 
 .c-deck-of-cards-img:hover{
   outline: none;
-  box-shadow: var(--global-html-color) 0 0 calc(3rem / var(--global-root-font-size)) calc(3rem / var(--global-root-font-size));
+  box-shadow: var(--global-html-color) 0 0 calc(2rem / var(--global-root-font-size)) calc(2rem / var(--global-root-font-size));
 }
 
 .c-deck-of-cards-img:focus{
   outline: none;
-  box-shadow: var(--global-html-color) 0 0 calc(4rem / var(--global-root-font-size)) calc(4rem / var(--global-root-font-size));
+  box-shadow: var(--global-html-color) 0 0 calc(3rem / var(--global-root-font-size)) calc(3rem / var(--global-root-font-size));
 }
 
 .c-deck{
@@ -908,12 +858,12 @@ fill: var(--logo__path--3--Fill);
 
 .c-deck:hover{
   outline: none;
-  box-shadow: var(--global-html-color) 0 0 calc(3rem / var(--global-root-font-size)) calc(3rem / var(--global-root-font-size));
+  box-shadow: var(--global-html-color) 0 0 calc(2rem / var(--global-root-font-size)) calc(2rem / var(--global-root-font-size));
 }
 
 .c-deck:focus{
   outline: none;
-  box-shadow: var(--global-html-color) 0 0 calc(4rem / var(--global-root-font-size)) calc(4rem / var(--global-root-font-size));
+  box-shadow: var(--global-html-color) 0 0 calc(3rem / var(--global-root-font-size)) calc(3rem / var(--global-root-font-size));
 }
 
 
@@ -951,7 +901,6 @@ overflow: hidden;
   padding-right: 0;
   height: auto;
   width: auto;
-  /* min-width: min(80vw, 400px); */
 }
 
 
@@ -1550,7 +1499,7 @@ margin: 0 auto;
 
 /*
   Utilities: text
-  Utility classes to create smaller or bigger test
+  Utility classes to create smaller or bigger
 */
 
 .u-text-sm {
