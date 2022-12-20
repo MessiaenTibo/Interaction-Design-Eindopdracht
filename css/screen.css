@@ -1105,7 +1105,7 @@ overflow: hidden;
   {
     margin-left: calc(-64rem / var(--global-root-font-size));
   }
-  .c-placeholder-cards.c-play-card:nth-child(4):nth-last-child(4)
+  .c-placeholder-cards .c-play-card:nth-child(4):nth-last-child(4)
   {
     margin-left: calc(-64rem / var(--global-root-font-size));
   }
@@ -1385,7 +1385,7 @@ align-items: center;
 .u-center{
   margin-left: auto;
   margin-right: auto;
-  max-width: 50rem;
+  max-width: 54rem;
   text-align: center;
 }
 
