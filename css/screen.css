@@ -75,6 +75,13 @@ html.dark
   --global-border-color: var(--global-color-neutral-xxxx-dark)
 }
 
+@media (min-width: 1000px) {
+  html {
+    font-size: calc(17rem / var(--global-root-font-size));
+    --global-root-font-size: 17;
+  }
+}
+
 
 @media (min-width: 1600px) {
   html {
