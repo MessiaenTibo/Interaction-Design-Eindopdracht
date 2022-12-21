@@ -76,7 +76,7 @@ html.dark
 }
 
 
-@media (min-width: 1000px) {
+@media (min-width: 1600px) {
   html {
     font-size: calc(20rem / var(--global-root-font-size));
     --global-root-font-size: 20;
@@ -822,7 +822,7 @@ fill: var(--logo__path--3--Fill);
 */
 
 .c-play-card{
-  height: calc(150rem / 16);
+  height: calc(150rem / var(--global-root-font-size));
   padding: 0 calc(8rem / var(--global-root-font-size))  0 0;
 }
 
@@ -1385,7 +1385,7 @@ align-items: center;
 .u-center{
   margin-left: auto;
   margin-right: auto;
-  max-width: 54rem;
+  max-width: 60rem;
   text-align: center;
 }
 
